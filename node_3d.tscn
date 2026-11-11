@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://b41t0fajbcqni"]
+
+[ext_resource type="Texture2D" uid="uid://bwbk655yyd04u" path="res://grate_albedo.png" id="1_a202f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_a202f"]
+sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
+energy_multiplier = 0.0
+
+[sub_resource type="Sky" id="Sky_noarx"]
+sky_material = SubResource("ProceduralSkyMaterial_a202f")
+
+[sub_resource type="Environment" id="Environment_a0tk4"]
+background_mode = 2
+sky = SubResource("Sky_noarx")
+sdfgi_enabled = true
+glow_enabled = true
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_215db"]
+lightmap_size_hint = Vector2i(17, 17)
+add_uv2 = true
+height = 2.5454102
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_j5buv"]
+transparency = 2
+alpha_scissor_threshold = 0.5
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("1_a202f")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4iufo"]
+emission_enabled = true
+emission = Color(0.20300001, 0.7, 0.20300001, 1)
+emission_energy_multiplier = 4.34
+
+[sub_resource type="BoxMesh" id="BoxMesh_noarx"]
+lightmap_size_hint = Vector2i(37, 110)
+add_uv2 = true
+size = Vector3(6.5577393, 7.216339, 0.11035156)
+
+[node name="Node3D" type="Node3D" unique_id=32451314]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1666800794]
+environment = SubResource("Environment_a0tk4")
+
+[node name="grate" type="MeshInstance3D" parent="." unique_id=176088133]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -0.0034926534, -0.12102699, 0.52691734)
+mesh = SubResource("CapsuleMesh_215db")
+surface_material_override/0 = SubResource("StandardMaterial3D_j5buv")
+
+[node name="light" type="MeshInstance3D" parent="grate" unique_id=1938818767]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0, 0, 0)
+mesh = SubResource("CapsuleMesh_215db")
+surface_material_override/0 = SubResource("StandardMaterial3D_4iufo")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="." unique_id=1066715979]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0.6904907, -1.6425377, 0.3761444)
+mesh = SubResource("BoxMesh_noarx")
